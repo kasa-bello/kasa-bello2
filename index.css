@@ -1,0 +1,221 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222 14% 14%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222 14% 14%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 14% 14%;
+
+    --primary: 270 83% 73%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 210 20% 96%;
+    --secondary-foreground: 220 24% 12%;
+
+    --muted: 210 20% 96%;
+    --muted-foreground: 220 14% 42%;
+
+    --accent: 270 67% 94%;
+    --accent-foreground: 220 24% 12%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 220 13% 91%;
+    --input: 220 13% 91%;
+    --ring: 222 14% 14%;
+
+    --radius: 0.5rem;
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5% 26%;
+    --sidebar-primary: 240 6% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 5% 96%;
+    --sidebar-accent-foreground: 240 6% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217 92% 60%;
+  }
+
+  .dark {
+    --background: 222 14% 9%;
+    --foreground: 210 20% 98%;
+
+    --card: 222 14% 9%;
+    --card-foreground: 210 20% 98%;
+
+    --popover: 222 14% 9%;
+    --popover-foreground: 210 20% 98%;
+
+    --primary: 210 20% 98%;
+    --primary-foreground: 220 24% 12%;
+
+    --secondary: 222 14% 15%;
+    --secondary-foreground: 210 20% 98%;
+
+    --muted: 222 14% 15%;
+    --muted-foreground: 220 14% 64%;
+
+    --accent: 222 14% 15%;
+    --accent-foreground: 210 20% 98%;
+
+    --destructive: 0 62% 31%;
+    --destructive-foreground: 210 20% 98%;
+
+    --border: 222 14% 18%;
+    --input: 222 14% 18%;
+    --ring: 212 27% 84%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    background-image: linear-gradient(to bottom, rgba(255,255,255,0.95), rgba(255,255,255,0.98)), 
+                      radial-gradient(ellipse at top left, rgba(214, 188, 250, 0.2), transparent 50%),
+                      radial-gradient(ellipse at bottom right, rgba(211, 228, 253, 0.2), transparent 50%);
+    background-attachment: fixed;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display tracking-tight;
+  }
+}
+
+/* Custom animations */
+@layer components {
+  .hover-underline {
+    position: relative;
+  }
+  
+  .hover-underline::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 1px;
+    bottom: -2px;
+    left: 0;
+    background-color: currentColor;
+    transform: scaleX(0);
+    transform-origin: bottom right;
+    transition: transform 0.3s ease-out;
+  }
+  
+  .hover-underline:hover::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+  }
+
+  .image-loading {
+    background: linear-gradient(90deg, #f0f0f0 25%, #f8f8f8 50%, #f0f0f0 75%);
+    background-size: 700px 100%;
+    animation: image-shimmer 2s infinite linear;
+  }
+}
+
+/* Custom gradients */
+@layer utilities {
+  .gradient-primary {
+    @apply bg-gradient-to-r from-purple to-magenta;
+  }
+  
+  .gradient-secondary {
+    @apply bg-gradient-to-r from-pastel-blue to-pastel-purple;
+  }
+  
+  .gradient-card-hover {
+    background-image: linear-gradient(225deg, #FFE29F 0%, #FFA99F 48%, #FF719A 100%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  
+  .gradient-text {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-purple to-magenta;
+  }
+
+  .card-shadow-hover {
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+  }
+  
+  .card-shadow-hover:hover {
+    box-shadow: 0 10px 30px -10px rgba(217, 70, 239, 0.2);
+    transform: translateY(-5px);
+  }
+}
+
+/* Additional background patterns */
+.bg-dots {
+  background-image: radial-gradient(rgba(217, 70, 239, 0.1) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+/* Colorful section dividers */
+.section-divider {
+  height: 6px;
+  background-image: linear-gradient(90deg, #D946EF, #9b87f5, #0EA5E9, #F97316);
+  border-radius: 3px;
+}
+
+/* Animation for cart counter */
+@keyframes scale-in {
+  0% {
+    transform: scale(0);
+  }
+  80% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.animate-scale-in {
+  animation: scale-in 0.3s ease-out forwards;
+}
+
+/* Add styles for menu hover underline effect */
+.hover-underline {
+  position: relative;
+}
+
+.hover-underline::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -2px;
+  left: 0;
+  background-color: #D946EF;
+  transition: width 0.3s ease;
+}
+
+.hover-underline:hover::after {
+  width: 100%;
+}
+
+/* Logo animation */
+@keyframes logo-glow {
+  0%, 100% {
+    filter: drop-shadow(0 0 3px rgba(217, 70, 239, 0.4));
+  }
+  50% {
+    filter: drop-shadow(0 0 8px rgba(217, 70, 239, 0.7));
+  }
+}
+
+.logo-animate {
+  animation: logo-glow 3s ease-in-out infinite;
+}
